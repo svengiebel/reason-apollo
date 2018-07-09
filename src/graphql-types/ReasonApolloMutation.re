@@ -49,7 +49,7 @@ module MutationFactory = (Config: Config) => {
       switch (
         apolloData##loading,
         apolloData##data |> ReasonApolloUtils.getNonEmptyObj,
-        apolloData##error |> Js.Nullable.toOption,
+        apolloData##error |> Js.Nullable.to_opt,
       ) {
       | (true, _, _) => Loading
       | (false, Some(data), _) => Data(Config.parse(data))
@@ -67,7 +67,7 @@ module MutationFactory = (Config: Config) => {
         | exception _ => None
         }
       },
-    error: apolloData##error |> Js.Nullable.toOption,
+    error: apolloData##error |> Js.Nullable.to_opt,
     loading: apolloData##loading,
     networkStatus: apolloData##networkStatus,
   };
@@ -84,9 +84,9 @@ module MutationFactory = (Config: Config) => {
         Js.Nullable.(
           {
             "mutation": graphqlMutationAST,
-            "variables": variables |> fromOption,
-            "onError": onError |> fromOption,
-            "onCompleted": onCompleted |> fromOption,
+            "variables": variables |> from_opt,
+            "onError": onError |> from_opt,
+            "onCompleted": onCompleted |> from_opt,
           }
         ),
       (mutation, apolloData) =>

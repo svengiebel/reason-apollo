@@ -35,11 +35,6 @@ open ApolloClient;
   */
   module CreateMutation = (Config:ReasonApolloTypes.Config) =>
     ReasonApolloMutation.MutationFactory(Config);
-  /*
-   * Expose a module to perform "subscription" operations for the given client 
-   */
-  module CreateSubscription = (Config:ReasonApolloTypes.Config) => 
-    ReasonApolloSubscription.Get(Config);
 
   module Provider = ApolloProvider;
 
